@@ -4,8 +4,7 @@ import sqlite3
 
 hd = {'User-Aagent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
       'Referer':'https://movie.douban.com/subject/26266893/',
-      'Cookie':'bid=w5sdJdebY4o; ll="108299"; _vwo_uuid_v2=DCA7BE5C0E54F4617AF84973DE08FA0AA|e88679c79f33280c537df7f4e0b0cd17; ct=y; push_noty_num=0; push_doumail_num=0; ap_v=0,6.0; ps=y; dbcl2="103511018:3+Lt0+eJqN8"; ck=08Cu; _pk_ref.100001.4cf6=%5B%22%22%2C%22%22%2C1550026865%2C%22https%3A%2F%2Fwww.douban.com%2Fsearch%3Fsource%3Dsuggest%26q%3D%25E6%25B5%2581%25E6%25B5%25AA%25E5%259C%25B0%25E7%2590%2583%22%5D; _pk_ses.100001.4cf6=*; _pk_id.100001.4cf6=5a49a9f23c3d7a4c.1549973574.3.1550026873.1549983768.',
-
+      'Cookie':'Your Cookie',}
 url = 'https://movie.douban.com/subject/26266893/comments'
 
 def get_comments(start_id, rank):
@@ -41,7 +40,7 @@ def main(rank):
             votes = comment.find(class_='votes').text
             text = comment.find(class_='short').text
             addtime = get_addtime(url)
-            cur.execute('INSERT INTO '+ 'douban_' + rank + ' VALUES (?,?,?,?,?,?)',(start_id, commenter, url, votes, text, addtime))
+            cur.execute('INSERT INTO '+ 'douban_' + rank + ' VALUES (?,?,?,?,?,?,?)',(start_id, commenter, url, votes, text, addtime, comment_time))
     con.commit()
     con.close()
 
